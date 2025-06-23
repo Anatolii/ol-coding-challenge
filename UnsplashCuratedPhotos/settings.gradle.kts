@@ -9,6 +9,10 @@ pluginManagement {
         }
         mavenCentral()
         gradlePluginPortal()
+        maven {
+            val androidxSnapshotsBuildId = 13684320
+            url = uri("https://androidx.dev/snapshots/builds/${androidxSnapshotsBuildId}/artifacts/repository")
+        }
     }
 }
 dependencyResolutionManagement {
@@ -16,6 +20,10 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven {
+            val androidxSnapshotsBuildId = 13684320
+            url = uri("https://androidx.dev/snapshots/builds/${androidxSnapshotsBuildId}/artifacts/repository")
+        }
     }
 }
 
