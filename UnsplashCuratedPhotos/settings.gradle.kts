@@ -20,3 +20,4 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "Unsplash Curated Photos"
+include(":app")
