@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    id("UnsplashApiKey")
 }
 
 android {
@@ -26,6 +27,13 @@ android {
                 "proguard-rules.pro"
             )
         }
+
+        val apiKey = the<UnsplashApiKey_gradle.UnsplashApiKey>().apiKey.get()
+        all( object: Action<com.android.build.api.dsl.BuildType> {
+            override fun execute(buildType: com.android.build.api.dsl.BuildType) {
+                buildType.buildConfigField("String", "UNSPLASH_API_KEY", "\"${apiKey}\"")
+            }
+        })
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
@@ -36,6 +44,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 }
 
