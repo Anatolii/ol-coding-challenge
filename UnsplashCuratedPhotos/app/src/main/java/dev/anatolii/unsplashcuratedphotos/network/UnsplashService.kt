@@ -21,6 +21,7 @@ class UnsplashService private constructor(
      *
      * @param page page to be retrieved. Default: [Constants.PhotosApi.PAGE_MIN_VALUE]
      * @param perPage number of items to return per page. Default: [Constants.PhotosApi.PER_PAGE_MAX_VALUE]
+     * @throws Exception if input parameters are invalid
      */
     suspend fun photos(
         page: Int = Constants.PhotosApi.PAGE_MIN_VALUE,
@@ -33,7 +34,7 @@ class UnsplashService private constructor(
         if (validatorsPass) {
             return api.photos(clientId = apiKey, page = page, perPage = perPage)
         }
-        return emptyList()
+        throw Exception("Invalid input parameters")
     }
 
     companion object {
