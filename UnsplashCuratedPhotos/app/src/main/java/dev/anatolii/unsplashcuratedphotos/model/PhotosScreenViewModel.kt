@@ -1,10 +1,12 @@
 package dev.anatolii.unsplashcuratedphotos.model
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import dev.anatolii.unsplashcuratedphotos.network.Constants
 import dev.anatolii.unsplashcuratedphotos.ui.data.Photo
 import kotlinx.coroutines.flow.Flow
@@ -26,5 +28,7 @@ class PhotosScreenViewModel: ViewModel() {
         }
     ) }
 
-    val photos: Flow<PagingData<Photo>> = unsplashPhotosPager.flow
+    val photos: Flow<PagingData<Photo>> by lazy {
+        unsplashPhotosPager.flow.cachedIn(viewModelScope)
+    }
 }
