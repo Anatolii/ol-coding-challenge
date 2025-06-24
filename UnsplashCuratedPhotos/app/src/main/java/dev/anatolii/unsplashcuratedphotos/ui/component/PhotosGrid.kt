@@ -10,26 +10,49 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.paging.LoadState
-import androidx.paging.PagingData
 import androidx.paging.compose.collectAsLazyPagingItems
 import dev.anatolii.unsplashcuratedphotos.R
-import dev.anatolii.unsplashcuratedphotos.ui.data.Photo
-import dev.anatolii.unsplashcuratedphotos.ui.data.PhotoEntry
-import kotlinx.coroutines.flow.Flow
+import dev.anatolii.unsplashcuratedphotos.model.PhotosScreenViewModel
+import kotlinx.coroutines.launch
 
 
 @Composable
-fun PhotosGrid(modifier: Modifier = Modifier, pagerFlow: Flow<PagingData<Photo>>) {
-    val photosPagingItems = pagerFlow.collectAsLazyPagingItems()
+fun PhotosGrid(
+    modifier: Modifier = Modifier,
+    viewModel: PhotosScreenViewModel,
+    onItemSelected: (Int) -> Unit = {},
+) {
+    val photosPagingItems = viewModel.photos.collectAsLazyPagingItems()
+    val selectedPhotoPosition by viewModel.selectedPhotoPosition.observeAsState()
+    val coroutineScope = rememberCoroutineScope()
+    val gridState = rememberLazyGridState()
+
+    var shouldAnimateScrollToSelectedPhoto by rememberSaveable { mutableStateOf(false) }
+
+    selectedPhotoPosition?.takeIf { it >= 0 && shouldAnimateScrollToSelectedPhoto}?.let { position ->
+        shouldAnimateScrollToSelectedPhoto = false
+        coroutineScope.launch {
+            gridState.layoutInfo.visibleItemsInfo.takeUnless { it.any { itemInfo -> itemInfo.index == position } }
+                ?.let {
+                    gridState.animateScrollToItem(index = position)
+                }
+        }
+    }
 
     LazyVerticalGrid(
         modifier = modifier.padding(8.dp),
-        state = rememberLazyGridState(),
+        state = gridState,
         columns = GridCells.Adaptive(150.dp),
         horizontalArrangement = Arrangement.spacedBy(4.dp),
         verticalArrangement = Arrangement.spacedBy(4.dp),
@@ -51,8 +74,16 @@ fun PhotosGrid(modifier: Modifier = Modifier, pagerFlow: Flow<PagingData<Photo>>
         ) { index ->
             val photo = photosPagingItems[index]
             if (photo != null) {
-                val photoEntry = PhotoEntry(position = index, photo = photo)
-                PhotoGridItem(photoEntry = photoEntry, modifier = Modifier.size(200.dp))
+                PhotoGridItem(
+                    photo = photo,
+                    selected = selectedPhotoPosition == index,
+                    modifier = Modifier.size(200.dp),
+                    onItemClick = {
+                        onItemSelected(index)
+                        viewModel.selectedPhotoPosition.value = index
+                        shouldAnimateScrollToSelectedPhoto = true
+                    },
+                )
             }
         }
     }

@@ -1,5 +1,6 @@
 package dev.anatolii.unsplashcuratedphotos.model
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.ExperimentalPagingApi
@@ -31,4 +32,6 @@ class PhotosScreenViewModel: ViewModel() {
     val photos: Flow<PagingData<Photo>> by lazy {
         unsplashPhotosPager.flow.cachedIn(viewModelScope)
     }
+
+    val selectedPhotoPosition: MutableLiveData<Int> = MutableLiveData<Int>(-1)
 }

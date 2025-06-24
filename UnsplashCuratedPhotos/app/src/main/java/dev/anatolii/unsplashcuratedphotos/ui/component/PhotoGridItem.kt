@@ -14,15 +14,15 @@ import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import dev.anatolii.unsplashcuratedphotos.R
 import dev.anatolii.unsplashcuratedphotos.ui.data.Photo
-import dev.anatolii.unsplashcuratedphotos.ui.data.PhotoEntry
 
 @Composable
 fun PhotoGridItem(
     modifier: Modifier = Modifier,
-    photoEntry: PhotoEntry,
-    onItemClick: (PhotoEntry) -> Unit = {}
+    photo: Photo,
+    selected: Boolean = false,
+    onItemClick: () -> Unit = {}
 ) {
-    val borderStroke = if (photoEntry.isSelected) {
+    val borderStroke = if (selected) {
         BorderStroke(1.dp, MaterialTheme.colorScheme.primary)
     } else {
         null
@@ -34,13 +34,11 @@ fun PhotoGridItem(
         tonalElevation = 16.dp,
         color = MaterialTheme.colorScheme.secondaryContainer,
         border = borderStroke,
-        onClick = {
-            onItemClick(photoEntry)
-        }
+        onClick = onItemClick
     ) {
         AsyncImage(
-            model = photoEntry.photo.thumbnailUrl,
-            contentDescription = photoEntry.photo.altDescription,
+            model = photo.thumbnailUrl,
+            contentDescription = photo.altDescription,
             modifier = Modifier.padding(4.dp),
             placeholder = painterResource(R.drawable.ic_launcher_foreground),
             error = painterResource(R.drawable.ic_launcher_background),
@@ -53,11 +51,8 @@ fun PhotoGridItem(
 @Preview(showBackground = true, widthDp = 100, heightDp = 100)
 fun PhotoGridItemPreview() {
     PhotoGridItem(
-        photoEntry = PhotoEntry(
-            position = 0,
-            photo = Photo(id = "1"),
-            isSelected = false,
-        ),
+        photo = Photo(id = "1"),
+        selected = false,
         modifier = Modifier.padding(4.dp),
     )
 }
@@ -66,11 +61,8 @@ fun PhotoGridItemPreview() {
 @Preview(name = "Selected", showBackground = true, widthDp = 100, heightDp = 100)
 fun PhotoGridItemPreviewSelected() {
     PhotoGridItem(
-        photoEntry = PhotoEntry(
-            position = 0,
-            photo = Photo(id = "1"),
-            isSelected = true,
-        ),
+        photo = Photo(id = "1"),
+        selected = true,
         modifier = Modifier.padding(4.dp),
     )
 }
