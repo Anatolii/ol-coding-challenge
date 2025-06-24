@@ -2,11 +2,12 @@ package dev.anatolii.unsplashcuratedphotos.ui.component
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.safeContentPadding
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -26,7 +27,8 @@ fun PhotosGrid(modifier: Modifier = Modifier, pagerFlow: Flow<PagingData<Photo>>
     val photosPagingItems = pagerFlow.collectAsLazyPagingItems()
 
     LazyVerticalGrid(
-        modifier = modifier.safeContentPadding(),
+        modifier = modifier.padding(8.dp),
+        state = rememberLazyGridState(),
         columns = GridCells.Adaptive(150.dp),
         horizontalArrangement = Arrangement.spacedBy(4.dp),
         verticalArrangement = Arrangement.spacedBy(4.dp),
