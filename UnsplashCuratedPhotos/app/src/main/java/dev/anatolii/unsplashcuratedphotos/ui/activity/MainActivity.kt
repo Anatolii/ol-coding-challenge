@@ -4,6 +4,9 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
+import dev.anatolii.unsplashcuratedphotos.model.PhotosScreenViewModel
+import dev.anatolii.unsplashcuratedphotos.ui.screen.PhotosScreen
 import dev.anatolii.unsplashcuratedphotos.ui.theme.UnsplashCuratedPhotosTheme
 
 class MainActivity : ComponentActivity() {
@@ -12,7 +15,8 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             UnsplashCuratedPhotosTheme {
-
+                val viewModel: PhotosScreenViewModel by viewModels()
+                PhotosScreen(viewModel = viewModel)
             }
         }
     }
