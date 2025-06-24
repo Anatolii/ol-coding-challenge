@@ -19,6 +19,7 @@ import androidx.paging.PagingData
 import androidx.paging.compose.collectAsLazyPagingItems
 import dev.anatolii.unsplashcuratedphotos.R
 import dev.anatolii.unsplashcuratedphotos.ui.data.Photo
+import dev.anatolii.unsplashcuratedphotos.ui.data.PhotoEntry
 import kotlinx.coroutines.flow.Flow
 
 
@@ -50,7 +51,8 @@ fun PhotosGrid(modifier: Modifier = Modifier, pagerFlow: Flow<PagingData<Photo>>
         ) { index ->
             val photo = photosPagingItems[index]
             if (photo != null) {
-                PhotoGridItem(photo = photo, modifier = Modifier.size(200.dp))
+                val photoEntry = PhotoEntry(position = index, photo = photo)
+                PhotoGridItem(photoEntry = photoEntry, modifier = Modifier.size(200.dp))
             }
         }
     }
