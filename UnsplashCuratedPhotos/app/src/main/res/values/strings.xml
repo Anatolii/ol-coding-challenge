@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name" translatable="true">Unsplash Curated Photos</string>
     <string name="photo_details_view_placeholder_text" translatable="true">Select a photo from the list</string>
+    <string name="grid_message_waiting_for_items_to_load" translatable="true">Waiting for items to load</string>
 </resources>
