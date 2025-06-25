@@ -15,6 +15,13 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import dev.anatolii.unsplashcuratedphotos.model.PhotosScreenViewModel
 import kotlinx.coroutines.launch
 
+/**
+ * PhotosDetailPager is a composable function that displays a pager of photo details.
+ * It takes a [PhotosScreenViewModel] as input and uses a [HorizontalPager] to display
+ * the details of each photo in the pager.
+ * @param modifier The modifier to be applied to the composable.
+ * @param viewModel The [PhotosScreenViewModel] containing the data for the photos to be displayed.
+ */
 @Composable
 fun PhotosDetailPager(modifier: Modifier = Modifier, viewModel: PhotosScreenViewModel) {
     val photosPagingItems = viewModel.photos.collectAsLazyPagingItems()

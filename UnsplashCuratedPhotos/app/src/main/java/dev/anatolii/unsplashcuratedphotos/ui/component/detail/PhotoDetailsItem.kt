@@ -31,6 +31,13 @@ import dev.anatolii.unsplashcuratedphotos.ui.component.LikesInfoSmall
 import dev.anatolii.unsplashcuratedphotos.ui.component.UserInfoSmall
 import dev.anatolii.unsplashcuratedphotos.ui.data.Photo
 
+/**
+ * PhotoDetailsItem is a composable function that displays the details of a photo.
+ * It takes a [Photo] object as input and displays the author's name, profile image,
+ * likes, description, and the full-size image of the photo.
+ * @param modifier The modifier to be applied to the composable.
+ * @param photo The [Photo] object containing the details of the photo to be displayed.
+ */
 @Composable
 fun PhotoDetailsItem(modifier: Modifier, photo: Photo) {
     val childModifier = Modifier
