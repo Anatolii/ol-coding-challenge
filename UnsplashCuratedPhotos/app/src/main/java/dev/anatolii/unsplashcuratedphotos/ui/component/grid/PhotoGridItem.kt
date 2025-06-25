@@ -15,6 +15,15 @@ import coil3.compose.AsyncImage
 import dev.anatolii.unsplashcuratedphotos.R
 import dev.anatolii.unsplashcuratedphotos.ui.data.Photo
 
+/**
+ * PhotoGridItem is a composable function that displays a single photo grid item.
+ * It takes a [Photo] object as input and uses the [AsyncImage] composable to display
+ * the photo thumbnail.
+ * @param modifier The modifier to be applied to the composable.
+ * @param photo The [Photo] object containing the data for the photo to be displayed.
+ * @param selected Whether the photo is selected or not.
+ * @param onItemClick The callback function to be invoked when the photo is clicked.
+ */
 @Composable
 fun PhotoGridItem(
     modifier: Modifier = Modifier,

@@ -23,7 +23,15 @@ import dev.anatolii.unsplashcuratedphotos.R
 import dev.anatolii.unsplashcuratedphotos.model.PhotosScreenViewModel
 import kotlinx.coroutines.launch
 
-
+/**
+ * PhotosGrid is a composable function that displays a grid of photo items.
+ * It takes a [PhotosScreenViewModel] as input and uses a [LazyVerticalGrid] to display
+ * the items in a grid.
+ * @param modifier The modifier to be applied to the composable.
+ * @param viewModel The [PhotosScreenViewModel] containing the data for the photos to be displayed.
+ * @param scrollToPositionState The [MutableState] containing the position to scroll to. Will be cleared after use.
+ * @param onItemSelected The callback function to be invoked when an item is selected.
+ */
 @Composable
 fun PhotosGrid(
     modifier: Modifier = Modifier,
