@@ -32,7 +32,7 @@ fun PhotoGridItem(
     onItemClick: () -> Unit = {}
 ) {
     val borderStroke = if (selected) {
-        BorderStroke(1.dp, MaterialTheme.colorScheme.primary)
+        BorderStroke(2.dp, MaterialTheme.colorScheme.primary)
     } else {
         null
     }
