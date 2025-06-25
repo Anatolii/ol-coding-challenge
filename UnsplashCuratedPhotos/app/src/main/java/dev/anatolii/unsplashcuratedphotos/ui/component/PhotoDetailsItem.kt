@@ -34,10 +34,12 @@ fun PhotoDetailsItem(modifier: Modifier, photo: Photo) {
     val childModifier = Modifier
         .clip(RoundedCornerShape(8.dp))
         .background(color = MaterialTheme.colorScheme.tertiaryContainer)
-    Box(modifier = modifier
-        .clip(RoundedCornerShape(16.dp))
-        .background(MaterialTheme.colorScheme.secondaryContainer)
-        .padding(8.dp)) {
+    Box(
+        modifier = modifier
+            .clip(RoundedCornerShape(16.dp))
+            .background(MaterialTheme.colorScheme.secondaryContainer)
+            .padding(8.dp)
+    ) {
         Column(
             horizontalAlignment = androidx.compose.ui.Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(4.dp)
@@ -68,6 +70,7 @@ fun PhotoDetailsItem(modifier: Modifier, photo: Photo) {
                 Text(
                     modifier = childModifier
                         .align(Alignment.Start)
+                        .padding(4.dp)
                         .fillMaxWidth(),
                     text = it,
                     color = MaterialTheme.colorScheme.onSurface,
