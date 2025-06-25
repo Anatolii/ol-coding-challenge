@@ -2,7 +2,6 @@ package dev.anatolii.unsplashcuratedphotos.ui.component
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.grid.GridCells
@@ -12,10 +11,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -38,10 +34,7 @@ fun PhotosGrid(
     val coroutineScope = rememberCoroutineScope()
     val gridState = rememberLazyGridState()
 
-    var shouldAnimateScrollToSelectedPhoto by rememberSaveable { mutableStateOf(false) }
-
-    selectedPhotoPosition?.takeIf { it >= 0 && shouldAnimateScrollToSelectedPhoto}?.let { position ->
-        shouldAnimateScrollToSelectedPhoto = false
+    selectedPhotoPosition?.takeIf { it >= 0 }?.let { position ->
         coroutineScope.launch {
             gridState.layoutInfo.visibleItemsInfo.takeUnless { it.any { itemInfo -> itemInfo.index == position } }
                 ?.let {
@@ -81,7 +74,6 @@ fun PhotosGrid(
                     onItemClick = {
                         onItemSelected(index)
                         viewModel.selectedPhotoPosition.value = index
-                        shouldAnimateScrollToSelectedPhoto = true
                     },
                 )
             }
