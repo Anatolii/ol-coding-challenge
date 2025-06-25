@@ -32,7 +32,7 @@ fun PhotoGridItem(
             .fillMaxSize()
             .focusable(enabled = true),
         tonalElevation = 16.dp,
-        color = MaterialTheme.colorScheme.secondaryContainer,
+        color = MaterialTheme.colorScheme.primaryContainer,
         border = borderStroke,
         onClick = onItemClick
     ) {
