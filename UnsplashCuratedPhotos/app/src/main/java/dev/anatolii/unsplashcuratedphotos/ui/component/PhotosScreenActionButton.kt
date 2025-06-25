@@ -1,4 +1,4 @@
-package dev.anatolii.unsplashcuratedphotos.ui.screen
+package dev.anatolii.unsplashcuratedphotos.ui.component
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -7,7 +7,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.paging.compose.collectAsLazyPagingItems
 import dev.anatolii.unsplashcuratedphotos.model.PhotosScreenViewModel
-import dev.anatolii.unsplashcuratedphotos.ui.component.UrlShareButton
 
 @Composable
 fun PhotosScreenActionButton(modifier: Modifier = Modifier, viewModel: PhotosScreenViewModel) {

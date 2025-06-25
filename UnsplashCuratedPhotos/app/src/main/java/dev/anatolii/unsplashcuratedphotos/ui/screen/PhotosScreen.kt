@@ -19,6 +19,8 @@ import dev.anatolii.unsplashcuratedphotos.model.PhotosScreenViewModel
 import dev.anatolii.unsplashcuratedphotos.ui.component.DetailsViewPlaceholder
 import dev.anatolii.unsplashcuratedphotos.ui.component.PhotosDetailPager
 import dev.anatolii.unsplashcuratedphotos.ui.component.PhotosGrid
+import dev.anatolii.unsplashcuratedphotos.ui.component.PhotosScreenActionButton
+import dev.anatolii.unsplashcuratedphotos.ui.component.PhotosScreenTopBar
 
 @OptIn(ExperimentalMaterial3AdaptiveApi::class, ExperimentalMaterial3Api::class)
 @Composable
