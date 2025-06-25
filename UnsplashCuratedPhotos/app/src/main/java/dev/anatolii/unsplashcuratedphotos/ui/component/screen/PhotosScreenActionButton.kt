@@ -9,6 +9,13 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import dev.anatolii.unsplashcuratedphotos.model.PhotosScreenViewModel
 import dev.anatolii.unsplashcuratedphotos.ui.component.UrlShareButton
 
+/**
+ * PhotosScreenActionButton is a composable function that displays an action button for sharing photos.
+ * It takes a [PhotosScreenViewModel] as input and uses the [UrlShareButton] composable to display
+ * the action button.
+ * @param modifier The modifier to be applied to the composable.
+ * @param viewModel The [PhotosScreenViewModel] containing the data for the photos to be displayed.
+ */
 @Composable
 fun PhotosScreenActionButton(modifier: Modifier = Modifier, viewModel: PhotosScreenViewModel) {
     val selectedPhotoPosition by viewModel.selectedPhotoPosition.observeAsState()

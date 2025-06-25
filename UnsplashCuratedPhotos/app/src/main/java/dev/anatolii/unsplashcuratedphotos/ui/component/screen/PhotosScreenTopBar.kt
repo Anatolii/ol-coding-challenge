@@ -12,6 +12,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 
+/**
+ * PhotosScreenTopBar is a composable function that displays a top bar for the photos screen.
+ * It takes a [Modifier] as input and uses the [TopAppBar] composable to display
+ * the top bar.
+ * @param modifier The modifier to be applied to the composable.
+ * @param title The string resource id of the title to be displayed in the top bar.
+ */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PhotosScreenTopBar(modifier: Modifier = Modifier, @StringRes title: Int) {
