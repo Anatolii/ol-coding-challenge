@@ -8,7 +8,11 @@ import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 
-
+/**
+ * UnsplashCuratedPhotosTheme is a composable function that sets the theme for the Unsplash Curated Photos app.
+ * @param darkTheme Whether the app should use the dark theme or not.
+ * @param content The content of the app.
+ */
 @Composable
 fun UnsplashCuratedPhotosTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
