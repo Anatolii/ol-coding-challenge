@@ -2,6 +2,9 @@ package dev.anatolii.unsplashcuratedphotos.network.data
 
 import com.google.gson.annotations.SerializedName
 
+/**
+ * Represents User instance as in Unsplash `/photo` API response
+ */
 data class User(
     val id: String,
     val name: String?,

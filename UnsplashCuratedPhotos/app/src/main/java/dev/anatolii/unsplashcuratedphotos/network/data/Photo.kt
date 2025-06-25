@@ -3,7 +3,7 @@ package dev.anatolii.unsplashcuratedphotos.network.data
 import com.google.gson.annotations.SerializedName
 
 /**
- * Represents Photo instance as in Unsplash service response
+ * Represents Photo instance as in Unsplash `/photo` API response
  */
 data class Photo(
     val id: String,
