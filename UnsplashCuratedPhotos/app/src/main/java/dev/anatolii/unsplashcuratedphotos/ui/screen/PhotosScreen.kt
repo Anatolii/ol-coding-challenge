@@ -8,6 +8,8 @@ import androidx.compose.material3.adaptive.ExperimentalMaterial3AdaptiveApi
 import androidx.compose.material3.adaptive.navigation3.ListDetailSceneStrategy
 import androidx.compose.material3.adaptive.navigation3.rememberListDetailSceneStrategy
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation3.runtime.entry
@@ -28,6 +30,7 @@ fun PhotosScreen(modifier: Modifier = Modifier, viewModel: PhotosScreenViewModel
 
     val backStack = rememberNavBackStack(PhotosGridNavKey)
     val listDetailStrategy = rememberListDetailSceneStrategy<Any>()
+    val scrollToPhotoPositionState = rememberSaveable { mutableStateOf<Int?>(value = null) }
 
     Scaffold(
         modifier = modifier.fillMaxSize(),
@@ -45,6 +48,7 @@ fun PhotosScreen(modifier: Modifier = Modifier, viewModel: PhotosScreenViewModel
                 repeat(keysToRemove) {
                     val removedEntry = backStack.removeLastOrNull()
                     if (removedEntry == PhotoDetailsNavKey) {
+                        scrollToPhotoPositionState.value = viewModel.selectedPhotoPosition.value
                         viewModel.selectedPhotoPosition.value = null
                     }
                 }
@@ -63,6 +67,7 @@ fun PhotosScreen(modifier: Modifier = Modifier, viewModel: PhotosScreenViewModel
                         onItemSelected = {
                             backStack.add(PhotoDetailsNavKey)
                         },
+                        scrollToPositionState = scrollToPhotoPositionState,
                         modifier = Modifier.padding(4.dp),
                     )
                 }

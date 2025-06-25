@@ -9,6 +9,7 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.rememberCoroutineScope
@@ -27,6 +28,7 @@ import kotlinx.coroutines.launch
 fun PhotosGrid(
     modifier: Modifier = Modifier,
     viewModel: PhotosScreenViewModel,
+    scrollToPositionState: MutableState<Int?>,
     onItemSelected: (Int) -> Unit = {},
 ) {
     val photosPagingItems = viewModel.photos.collectAsLazyPagingItems()
@@ -34,12 +36,13 @@ fun PhotosGrid(
     val coroutineScope = rememberCoroutineScope()
     val gridState = rememberLazyGridState()
 
-    selectedPhotoPosition?.takeIf { it >= 0 }?.let { position ->
+    (selectedPhotoPosition ?: scrollToPositionState.value)?.takeIf { it >= 0 }?.let { position ->
         coroutineScope.launch {
             gridState.layoutInfo.visibleItemsInfo.takeUnless { it.any { itemInfo -> itemInfo.index == position } }
                 ?.let {
                     gridState.animateScrollToItem(index = position)
                 }
+            scrollToPositionState.value = null
         }
     }
 
