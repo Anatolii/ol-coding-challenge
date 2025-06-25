@@ -18,7 +18,7 @@ import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.ui.NavDisplay
 import dev.anatolii.unsplashcuratedphotos.R
 import dev.anatolii.unsplashcuratedphotos.model.PhotosScreenViewModel
-import dev.anatolii.unsplashcuratedphotos.ui.component.DetailsViewPlaceholder
+import dev.anatolii.unsplashcuratedphotos.ui.component.detail.DetailsViewPlaceholder
 import dev.anatolii.unsplashcuratedphotos.ui.component.detail.PhotosDetailPager
 import dev.anatolii.unsplashcuratedphotos.ui.component.grid.PhotosGrid
 import dev.anatolii.unsplashcuratedphotos.ui.component.screen.PhotosScreenActionButton

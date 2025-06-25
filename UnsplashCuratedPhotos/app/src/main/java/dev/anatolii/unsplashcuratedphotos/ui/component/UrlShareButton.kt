@@ -10,6 +10,11 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import dev.anatolii.unsplashcuratedphotos.R
 
+/**
+ * UrlShareButton is a composable function that displays a button for sharing a URL.
+ * @param modifier The modifier to be applied to the composable.
+ * @param url The URL to be shared.
+ */
 @Composable
 fun UrlShareButton(modifier: Modifier, url: String) {
     val context = LocalContext.current

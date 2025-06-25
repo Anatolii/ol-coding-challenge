@@ -1,4 +1,4 @@
-package dev.anatolii.unsplashcuratedphotos.ui.component
+package dev.anatolii.unsplashcuratedphotos.ui.component.detail
 
 import androidx.annotation.StringRes
 import androidx.compose.foundation.background
@@ -16,8 +16,14 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import dev.anatolii.unsplashcuratedphotos.R
 import dev.anatolii.unsplashcuratedphotos.ui.theme.UnsplashCuratedPhotosTheme
 
+/**
+ * DetailsViewPlaceholder is a composable function that displays a placeholder for the details view.
+ * @param modifier The modifier to be applied to the composable.
+ * @param message The string resource id of the message to be displayed in the placeholder.
+ */
 @Composable
 fun DetailsViewPlaceholder(modifier: Modifier = Modifier, @StringRes message: Int) {
     Box(
@@ -41,7 +47,7 @@ fun DetailsViewPlaceholder(modifier: Modifier = Modifier, @StringRes message: In
 @Preview(name = "phone", widthDp = 320, heightDp = 200, showBackground = true)
 fun DetailsViewPlaceholderPreview() {
     UnsplashCuratedPhotosTheme {
-        DetailsViewPlaceholder(message = dev.anatolii.unsplashcuratedphotos.R.string.photo_details_view_placeholder_text)
+        DetailsViewPlaceholder(message = R.string.photo_details_view_placeholder_text)
     }
 }
 
@@ -49,6 +55,6 @@ fun DetailsViewPlaceholderPreview() {
 @Preview(name = "phone Dark", widthDp = 320, heightDp = 200, showBackground = true)
 fun DetailsViewPlaceholderPreviewDark() {
     UnsplashCuratedPhotosTheme(darkTheme = true) {
-        DetailsViewPlaceholder(message = dev.anatolii.unsplashcuratedphotos.R.string.photo_details_view_placeholder_text)
+        DetailsViewPlaceholder(message = R.string.photo_details_view_placeholder_text)
     }
 }

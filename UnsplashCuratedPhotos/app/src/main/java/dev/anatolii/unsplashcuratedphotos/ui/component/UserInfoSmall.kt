@@ -18,6 +18,12 @@ import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import dev.anatolii.unsplashcuratedphotos.R
 
+/**
+ * UserInfoSmall is a composable function that displays the user information.
+ * @param modifier The modifier to be applied to the composable.
+ * @param name The name of the user.
+ * @param profileImageUrl The URL of the user's profile image.
+ */
 @Composable
 fun UserInfoSmall(modifier: Modifier, name: String, profileImageUrl: String?) {
     Row(

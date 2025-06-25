@@ -13,6 +13,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import dev.anatolii.unsplashcuratedphotos.R
 
+/**
+ * LikesInfoSmall is a composable function that displays the likes information.
+ * @param modifier The modifier to be applied to the composable.
+ * @param likes The number of likes.
+ */
 @Composable
 fun LikesInfoSmall(modifier: Modifier, likes: Int) {
     Row(
