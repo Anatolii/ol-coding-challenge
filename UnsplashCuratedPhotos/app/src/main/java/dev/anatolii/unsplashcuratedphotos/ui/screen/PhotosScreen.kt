@@ -24,6 +24,11 @@ import dev.anatolii.unsplashcuratedphotos.ui.component.grid.PhotosGrid
 import dev.anatolii.unsplashcuratedphotos.ui.component.screen.PhotosScreenActionButton
 import dev.anatolii.unsplashcuratedphotos.ui.component.screen.PhotosScreenTopBar
 
+/**
+ * PhotosScreen is a composable function that displays the photos screen.
+ * @param modifier The modifier to be applied to the composable.
+ * @param viewModel The view model for the photos screen.
+ */
 @OptIn(ExperimentalMaterial3AdaptiveApi::class, ExperimentalMaterial3Api::class)
 @Composable
 fun PhotosScreen(modifier: Modifier = Modifier, viewModel: PhotosScreenViewModel) {

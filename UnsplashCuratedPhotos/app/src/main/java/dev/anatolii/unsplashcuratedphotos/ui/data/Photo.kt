@@ -2,6 +2,9 @@ package dev.anatolii.unsplashcuratedphotos.ui.data
 
 import kotlinx.serialization.Serializable
 
+/**
+ * A data class representing a photo.
+ */
 @Serializable
 data class Photo(
     val id: String,
