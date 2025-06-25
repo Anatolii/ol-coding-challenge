@@ -4,6 +4,9 @@ import dev.anatolii.unsplashcuratedphotos.network.data.Photo
 import retrofit2.http.GET
 import retrofit2.http.Query
 
+/**
+ * Unsplash service API to be used with Retrofit.
+ */
 internal interface UnsplashServiceApi {
 
     /**

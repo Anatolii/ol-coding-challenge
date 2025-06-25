@@ -45,24 +45,32 @@ class UnsplashService private constructor(
          * @param apiKey an API key to Unsplash service
          */
         fun withApiKey(apiKey: String): UnsplashService {
-            val loggingInterceptor = HttpLoggingInterceptor().apply {
-                if(BuildConfig.DEBUG) {
+            val api = createServiceApi()
+            return UnsplashService(apiKey, api)
+        }
+
+        private fun createServiceApi(
+            client: OkHttpClient = createHttpClient()
+        ): UnsplashServiceApi = Retrofit.Builder()
+            .baseUrl(Constants.BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(client)
+            .build()
+            .create(UnsplashServiceApi::class.java)
+
+        private fun createHttpClient(
+            loggingInterceptor: HttpLoggingInterceptor = createLoggingInterceptor()
+        ): OkHttpClient = OkHttpClient.Builder()
+            .addInterceptor(loggingInterceptor)
+            .build()
+
+        private fun createLoggingInterceptor(): HttpLoggingInterceptor =
+            HttpLoggingInterceptor().apply {
+                if (BuildConfig.DEBUG) {
                     setLevel(HttpLoggingInterceptor.Level.HEADERS)
                 } else {
                     setLevel(HttpLoggingInterceptor.Level.NONE)
                 }
             }
-            val client = OkHttpClient.Builder()
-                .addInterceptor(loggingInterceptor)
-                .build()
-
-            val api = Retrofit.Builder()
-                .baseUrl(Constants.BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(client)
-                .build()
-                .create(UnsplashServiceApi::class.java)
-            return UnsplashService(apiKey, api)
-        }
     }
 }
