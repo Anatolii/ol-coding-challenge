@@ -9,6 +9,10 @@ import dev.anatolii.unsplashcuratedphotos.network.Constants
 import dev.anatolii.unsplashcuratedphotos.network.UnsplashService
 import dev.anatolii.unsplashcuratedphotos.ui.data.Photo
 
+/**
+ * A [PagingSource] for Unsplash photos.
+ * Uses [UnsplashService] to fetch the photos list from the server.
+ */
 class UnsplashPhotosPagingSourceFactory(
     private val unsplashService: UnsplashService = UnsplashService.withApiKey(BuildConfig.UNSPLASH_API_KEY)
 ) : PagingSource<Int, Photo>() {
@@ -23,6 +27,9 @@ class UnsplashPhotosPagingSourceFactory(
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Photo> {
         var currentPage = params.key ?: 1
 
+        // The logic below ensures we load all the requested photos.
+        // The params.loadSize by default will equal 3xPageSize provided in [androidx.paging.PagingConfig]
+        // Hence we should not make assumptions about the loadSize value
         var remainingLoadSize = params.loadSize
         val responses = mutableListOf<LoadResult<Int, Photo>>()
         while(remainingLoadSize > 0) {
@@ -54,6 +61,9 @@ class UnsplashPhotosPagingSourceFactory(
         return Invalid()
     }
 
+    /**
+     * Performs single page load operation from Unsplash backend.
+     */
     private suspend fun load(page: Int, perPage: Int): LoadResult<Int, Photo> {
         val protoAdapter = PhotoAdapter()
         val photos = try {
