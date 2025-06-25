@@ -1,4 +1,4 @@
-package dev.anatolii.unsplashcuratedphotos.ui.component
+package dev.anatolii.unsplashcuratedphotos.ui.component.detail
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.pager.HorizontalPager

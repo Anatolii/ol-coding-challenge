@@ -1,4 +1,4 @@
-package dev.anatolii.unsplashcuratedphotos.ui.component
+package dev.anatolii.unsplashcuratedphotos.ui.component.screen
 
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.fillMaxWidth

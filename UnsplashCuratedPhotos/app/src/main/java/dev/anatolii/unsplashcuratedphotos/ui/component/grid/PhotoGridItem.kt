@@ -1,4 +1,4 @@
-package dev.anatolii.unsplashcuratedphotos.ui.component
+package dev.anatolii.unsplashcuratedphotos.ui.component.grid
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.focusable

@@ -1,4 +1,4 @@
-package dev.anatolii.unsplashcuratedphotos.ui.component
+package dev.anatolii.unsplashcuratedphotos.ui.component.detail
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.horizontalScroll
@@ -27,6 +27,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import dev.anatolii.unsplashcuratedphotos.R
+import dev.anatolii.unsplashcuratedphotos.ui.component.LikesInfoSmall
+import dev.anatolii.unsplashcuratedphotos.ui.component.UserInfoSmall
 import dev.anatolii.unsplashcuratedphotos.ui.data.Photo
 
 @Composable
@@ -41,7 +43,7 @@ fun PhotoDetailsItem(modifier: Modifier, photo: Photo) {
             .padding(8.dp)
     ) {
         Column(
-            horizontalAlignment = androidx.compose.ui.Alignment.CenterHorizontally,
+            horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(4.dp)
         ) {
             Row(

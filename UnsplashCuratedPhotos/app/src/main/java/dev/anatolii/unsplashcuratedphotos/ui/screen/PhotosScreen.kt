@@ -17,10 +17,10 @@ import androidx.navigation3.ui.NavDisplay
 import dev.anatolii.unsplashcuratedphotos.R
 import dev.anatolii.unsplashcuratedphotos.model.PhotosScreenViewModel
 import dev.anatolii.unsplashcuratedphotos.ui.component.DetailsViewPlaceholder
-import dev.anatolii.unsplashcuratedphotos.ui.component.PhotosDetailPager
-import dev.anatolii.unsplashcuratedphotos.ui.component.PhotosGrid
-import dev.anatolii.unsplashcuratedphotos.ui.component.PhotosScreenActionButton
-import dev.anatolii.unsplashcuratedphotos.ui.component.PhotosScreenTopBar
+import dev.anatolii.unsplashcuratedphotos.ui.component.detail.PhotosDetailPager
+import dev.anatolii.unsplashcuratedphotos.ui.component.grid.PhotosGrid
+import dev.anatolii.unsplashcuratedphotos.ui.component.screen.PhotosScreenActionButton
+import dev.anatolii.unsplashcuratedphotos.ui.component.screen.PhotosScreenTopBar
 
 @OptIn(ExperimentalMaterial3AdaptiveApi::class, ExperimentalMaterial3Api::class)
 @Composable
