@@ -2,4 +2,7 @@
     <string name="app_name" translatable="true">Unsplash Curated Photos</string>
     <string name="photo_details_view_placeholder_text" translatable="true">Select a photo from the list</string>
     <string name="grid_message_waiting_for_items_to_load" translatable="true">Waiting for items to load</string>
+    <string name="photo_author_profile_avatar_image_description" translatable="true">Photo author profile photo</string>
+    <string name="likes">Likes</string>
+    <string name="share_url_button_icon_description">Button to share url</string>
 </resources>
