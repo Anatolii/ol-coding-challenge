@@ -44,7 +44,7 @@ fun PhotosGrid(
     }
 
     LazyVerticalGrid(
-        modifier = modifier.padding(8.dp),
+        modifier = modifier,
         state = gridState,
         columns = GridCells.Adaptive(150.dp),
         horizontalArrangement = Arrangement.spacedBy(4.dp),
