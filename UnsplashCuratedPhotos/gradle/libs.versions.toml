@@ -1,6 +1,6 @@
 [versions]
 activityCompose = "1.10.1"
-agp = "8.12.0-alpha06"
+agp = "8.12.0-alpha07"
 composeBom = "2025.06.01"
 composeLivedata = "1.8.3"
 coil = "3.2.0"
