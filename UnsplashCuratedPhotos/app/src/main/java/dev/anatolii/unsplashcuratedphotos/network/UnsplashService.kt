@@ -26,15 +26,34 @@ class UnsplashService private constructor(
     suspend fun photos(
         page: Int = Constants.PhotosApi.PAGE_MIN_VALUE,
         perPage: Int = Constants.PhotosApi.PER_PAGE_MAX_VALUE
-    ): List<Photo> {
+    ): Result<List<Photo>> {
         val validatorsPass = listOf(
             PhotosApiPageNumberValidator(page),
             PhotosApiPerPageNumberValidator(perPage),
         ).all { it.validate() }
         if (validatorsPass) {
-            return api.photos(clientId = apiKey, page = page, perPage = perPage)
+            return getCuratedPhotos(apiKey, page, perPage)
         }
         throw Exception("Invalid input parameters")
+    }
+
+    suspend fun getCuratedPhotos(clientId: String, page: Int, perPage: Int): Result<List<Photo>> {
+        return try {
+            val response = api.photos(clientId, page, perPage)
+
+            if (response.isSuccessful) {
+                response.body()?.let { photos ->
+                    Result.success(photos)
+                } ?: Result.failure(Exception("Response body is null"))
+            } else {
+                val errorBody = response.errorBody()?.string() // Get error message from server
+                val errorCode = response.code()
+                Result.failure(Exception("API Error: $errorCode - ${errorBody ?: "Unknown error"}"))
+            }
+        } catch (e: Exception) {
+            // Handle other exceptions like network issues, etc.
+            Result.failure(e)
+        }
     }
 
     companion object {

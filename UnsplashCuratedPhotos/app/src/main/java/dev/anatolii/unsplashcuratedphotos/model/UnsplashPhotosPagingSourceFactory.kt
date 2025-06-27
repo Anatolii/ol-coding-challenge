@@ -1,7 +1,9 @@
 package dev.anatolii.unsplashcuratedphotos.model
 
 import androidx.paging.PagingSource
-import androidx.paging.PagingSource.LoadResult.*
+import androidx.paging.PagingSource.LoadResult.Error
+import androidx.paging.PagingSource.LoadResult.Invalid
+import androidx.paging.PagingSource.LoadResult.Page
 import androidx.paging.PagingState
 import dev.anatolii.unsplashcuratedphotos.BuildConfig
 import dev.anatolii.unsplashcuratedphotos.model.util.PhotoAdapter
@@ -67,7 +69,13 @@ class UnsplashPhotosPagingSourceFactory(
     private suspend fun load(page: Int, perPage: Int): LoadResult<Int, Photo> {
         val protoAdapter = PhotoAdapter()
         val photos = try {
-            unsplashService.photos(page, perPage).map {
+            val result = unsplashService.photos(page, perPage)
+            val photos = if (result.isSuccess) {
+                result.getOrThrow()
+            } else {
+                throw result.exceptionOrNull() ?: Exception("Unknown error")
+            }
+            photos.map {
                 protoAdapter.adaptToUi(networkPhoto = it)
             }
         } catch (e: Exception) {

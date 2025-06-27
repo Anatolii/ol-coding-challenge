@@ -1,6 +1,7 @@
 package dev.anatolii.unsplashcuratedphotos.network
 
 import dev.anatolii.unsplashcuratedphotos.network.data.Photo
+import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -22,5 +23,5 @@ internal interface UnsplashServiceApi {
         @Query(value = Constants.QueryParameterNames.CLIENT_ID) clientId: String,
         @Query(value = Constants.QueryParameterNames.PAGE) page: Int = Constants.PhotosApi.PAGE_MIN_VALUE,
         @Query(value = Constants.QueryParameterNames.PER_PAGE) perPage: Int = Constants.PhotosApi.PER_PAGE_MAX_VALUE,
-    ): List<Photo>
+    ): Response<List<Photo>>
 }
